@@ -1,0 +1,9 @@
+// build.zig.zon
+.{
+    .name = "zboot",
+    .version = "0.1.0",
+    .dependencies = .{},
+    .metadata = .{
+        .zig_version = "0.15.0-dev.286+ddcf6fcdf",
+    },
+}

@@ -1,8 +1,6 @@
 const std = @import("std");
-const Allocator = std.mem.Allocator;
 
 const targets = [_]std.Target.Query{
-    // .{}, // native
     .{
         .cpu_arch = .x86_64,
         .os_tag = .uefi,
@@ -13,12 +11,8 @@ const targets = [_]std.Target.Query{
 
 pub fn build(b: *std.Build) !void {
     for (targets) |t| {
-        // const exe = b.addExecutable(.{
-        //     .name = "zboot",
-        //     .root_source_file = b.path("src/main.zig"),
-        //     .target = b.resolveTargetQuery(t),
-        //     .optimize = .ReleaseSafe,
-        // });
+        // using std.Build.Module because in zig version 0.14.0 or greater,
+        // you populate root_module field of executableOptions
         const module: *std.Build.Module = b.createModule(.{
             .root_source_file = .{ .src_path = .{ .owner = b, .sub_path = "src/main.zig" } },
             .target = b.resolveTargetQuery(t),
@@ -36,7 +30,6 @@ pub fn build(b: *std.Build) !void {
         bin.subsystem = .EfiApplication;
         bin.kind = .exe;
 
-        // const triple: Allocator.Error![]u8 = t.zigTriple(b.allocator) catch @panic("OOM");
         const artifact: *std.Build.Step.InstallArtifact = b.addInstallArtifact(
             bin,
             .{
