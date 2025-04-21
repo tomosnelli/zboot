@@ -25,7 +25,8 @@ pub fn build(b: *std.Build) !void {
             .root_module = module,
         });
 
-        bin.entry = .{ .symbol_name = "efi_main" };
+        // // seems like the entry field is completely ignored for zig 0.15.0
+        // bin.entry = .{ .symbol_name = "efi_main" };
         bin.pie = true;
         bin.subsystem = .EfiApplication;
         bin.kind = .exe;
