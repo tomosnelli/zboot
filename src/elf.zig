@@ -1,4 +1,4 @@
-const ElfHeader = struct {
+pub const ElfHeader = struct {
     // 0x00
     //  4bytes should be 0x7F 0x45 0x4C 0x46
     magic: [4]u8,
@@ -65,4 +65,28 @@ const ElfHeader = struct {
     // 0x40 end of elf header
 };
 
-const ProgramHeader = struct {};
+pub const ProgramHeader = struct {
+    // 0x00 indentifies the type of the segment
+    p_type: [4]u8,
+
+    // 0x04 segment dependent flags (position for 64 bit struct)
+    p_flags: [4]u8,
+
+    // 0x08 offset of the segment in the file image
+    p_offset: [8]u8,
+
+    // 0x10 virtual address of the segment in memory
+    p_vaddr: [8]u8,
+
+    // 0x18 on systems where physical address is relevant, reserved for segments physical address
+    p_paddr: [8]u8,
+
+    // 0x20 size in bytes of the segment in the file image
+    p_filesz: [8]u8,
+
+    // 0x28 size in bytes of the segment in memory.
+    p_memsz: [8]u8,
+
+    // 0x30 0 and 1 specify no alignment. Otherwise should be a positive, integral power of 2
+    p_align: [8]u8,
+};
