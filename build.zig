@@ -4,9 +4,13 @@ const targets = [_]std.Target.Query{
     .{
         .cpu_arch = .x86_64,
         .os_tag = .uefi,
+        .abi = .msvc,
     },
-    // .{ .cpu_arch = .aarch64, .os_tag = .uefi, .abi = .gnuabi64 },
-    // .{ .cpu_arch = .riscv64, .os_tag = .uefi, .abi = .gnuabi64 },
+    .{
+        .cpu_arch = .aarch64,
+        .os_tag = .uefi,
+        .abi = .msvc,
+    },
 };
 
 pub fn build(b: *std.Build) !void {

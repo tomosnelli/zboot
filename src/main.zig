@@ -7,7 +7,6 @@ fn console_out(con: *uefi.protocol.SimpleTextOutput, msg: [*:0]const u16) !void 
     };
 }
 
-// pub export fn efi_main(handle: uefi.Handle, system_table: *uefi.tables.SystemTable) callconv(.C) uefi.Status {
 pub export fn main() callconv(.C) uefi.Status {
     const con_out = uefi.system_table.con_out.?;
     const boot_serv = uefi.system_table.boot_services.?;
