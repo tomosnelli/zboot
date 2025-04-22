@@ -90,3 +90,39 @@ pub const ProgramHeader = struct {
     // 0x30 0 and 1 specify no alignment. Otherwise should be a positive, integral power of 2
     p_align: [8]u8,
 };
+
+pub const SectionHeader = struct {
+    // 0x00 offset to a string in the .shstrtab section that represents the name of this section
+    sh_name: [4]u8,
+
+    // 0x04 identifies the type of this header
+    sh_type: [4]u8,
+
+    //0x08 identifies the attributes of the section
+    sh_flags: [8]u8,
+
+    // 0x10 virtual address of the sectio in memory, for sections that are loaded
+    sh_addr: [8]u8,
+
+    // 0x18 offset of the section in the file iamge
+    sh_offset: [8]u8,
+
+    // 0x20 size in bytes of the section
+    sh_size: [8]u8,
+
+    // 0x28 contains the section index of an associated section.
+    // This field is used for several purposes, depending on the type of section
+    sh_link: [4]u8,
+
+    // 0x2C contains extra infor about the section. This field is used for several purposes
+    // depending on the type of section
+    sh_info: [4]u8,
+
+    // 0x30 Contains the required alignment of the section. This field must be a power of two
+    sh_addralign: [8]u8,
+
+    // 0x38 Contains the size, in bytes, of each entry, for sections that contain fixed-size entries.
+    sh_entsize: [8]u8,
+
+    // End of section header 0x40
+};
