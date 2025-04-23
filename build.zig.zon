@@ -1,0 +1,10 @@
+.{ .name = "zboot", .version = "0.1.0", .paths = .{
+    "",
+    "src",
+    "include",
+}, .minimum_zig_version = "0.14.0", .dependencies = .{
+    .zig_msgpack = .{
+        .url = "https://github.com/zigcc/zig-msgpack/archive/6b943b5133cb2ecba3918ee3af0232795d9fd81b.tar.gz",
+        .hash = "zig_msgpack-0.0.8-evvueDjQAACcvfAQ2JW_65CFLqcZcof0Y7Z9Bdw6mHTz",
+    },
+} }
